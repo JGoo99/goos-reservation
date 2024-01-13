@@ -1,0 +1,138 @@
+@import "default.css";
+
+body {
+    padding: 0 0 60px 0;
+}
+
+.title {
+    font-family: "BMDOHYEON", sans-serif;
+    font-size: 30px;
+    padding: 5px;
+    margin: 10px 0 4px;
+}
+
+.alert {
+    font-size: 12px;
+    color: #cd5c5c;
+    margin: 12px;
+}
+
+.intro {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+form {
+    padding: 10px;
+}
+
+#two {
+    display: flex;
+}
+
+#two #second {
+    margin-left: 7px;
+}
+
+.input-box {
+    position: relative;
+    margin: 10px 0;
+}
+
+.check-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+label {
+    position: absolute;
+    left: 5px;
+    top: 20px;
+    font-size: 12pt;
+    color: #aaa;
+}
+
+label:hover {
+    cursor: text;
+}
+
+.example {
+    margin-top: 4px;
+    margin-left: 10px;
+    color: darkslategray;
+    font-size: 7pt;
+}
+
+.input-box > input {
+    margin-top: 10px;
+    border: none;
+    border-bottom: solid 1px #ccc;
+    padding-top: 13px;
+    font-size: 14pt;
+    width: 100%;
+}
+
+input:focus + label {
+    position: absolute;
+    font-size: 10px;
+    left: 4px;
+    top: 13px;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: solid 1px darkslategray;
+    transition-duration: 0.7s;
+}
+
+input:not(:placeholder-shown) + label {
+    position: absolute;
+    font-size: 10px;
+    left: 4px;
+    top: 13px;
+}
+
+.submit-button {
+    font-family: "GmarketSansMedium", sans-serif;
+    letter-spacing: 1px;
+    display: block;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 0 5px 0;
+    width: 80%;
+    margin: 30px auto auto;
+    background-color: #3e8ede;
+}
+
+.submit-button {
+    background-color: #3e8ede;
+}
+
+.submit-button:hover {
+    background-color: #3272b2;
+}
+
+.submit-button-driver {
+    background-color: #d96161;
+}
+
+.submit-button-driver:hover {
+    background-color: #b45151;
+}
+
+#to-join {
+    margin: auto;
+    font-size: 12px;
+    text-decoration: none;
+    color: #606060;
+}
+
+#to-join:hover {
+    text-decoration: underline;
+}

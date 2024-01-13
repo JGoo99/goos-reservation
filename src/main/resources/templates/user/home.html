@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/home.css">
+  <title>User Home</title>
+</head>
+<body>
+<div id="default">
+  <div id="container">
+    <div class="contents">
+      <div class="title">
+        <a href="/home" id="home">Goo's Reservation</a>
+        <div class="member-wrap">
+          <div class="is-login" sec:authorize="hasRole('USER')">
+            <a href="/user/my" sec:authentication="principal.nickname"></a>
+            <p>고객님</p>
+            <span> | </span>
+            <a href="/logout">로그아웃</a>
+          </div>
+          <div class="is-logout" sec:authorize="hasRole('DRIVER') or isAnonymous()">
+            <a href="/join">회원가입</a>
+            <span> | </span>
+            <a href="/login">로그인</a>
+          </div>
+        </div>
+      </div>
+      <div class="search-box">
+        <form action="" method="post" name="searchForm">
+          <div class="icon" onclick="document.forms['searchForm'].submit()"></div>
+          <input type="text" id="search-input" />
+        </form>
+      </div>
+      <div class="dir-selector">
+        <div class="selector-wrap">
+          <p>거리순</p>
+        </div>
+        <div class="selector-wrap">
+          <p>별점순</p>
+        </div>
+        <div class="selector-wrap">
+          <p>가나다순</p>
+        </div>
+      </div>
+<!--      <div class="shop-box">-->
+<!--        <div class="intro" th:if="${list.totalPages} == '0'">아직 등록된 매장이 없습니다.</div>-->
+<!--        <div class="shop-list">-->
+<!--          <a th:href="@{/user/shop/info(shopId=${x.shopId})}" class="shop-ele" th:each="x : ${list}">-->
+<!--            <p class="ele-title" th:text="${x.shopName}"></p>-->
+<!--            <div class="ele-summary">-->
+<!--              <div class="stars">-->
+<!--                <div class="icon-star">⭐</div>-->
+<!--                <div class="stars-value" th:if="${x.reviewCount} == '0'" th:text="0.0"></div>-->
+<!--                <div class="stars-value" th:unless="${x.reviewCount} == '0'" th:text="${x.stars} / ${x.reviewCount}"></div>-->
+<!--              </div>-->
+<!--              <div class="review-count">-->
+<!--                <p>리뷰</p>-->
+<!--                <p id="review-count" th:text="${x.reviewCount}"></p>-->
+<!--                <p>개</p>-->
+<!--              </div>-->
+<!--              <div class="location">-->
+<!--                <p th:text="${x.address1}"></p>-->
+<!--                <p th:text="${x.address2}"></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="paging-wrap" th:unless="${list.totalPages} == '0'">-->
+<!--        <ul th:with="start=${startPage}, last=${endPage}">-->
+<!--          <th:block th:with="-->
+<!--          firstLink=@{/user/home(page=1)},-->
+<!--          prevLink=@{/user/home(page=${list.number})},-->
+<!--          nextLink=@{/user/home(page=${list.number + 2})},-->
+<!--          lastLink=@{/user/home(page=${list.totalPages})}"-->
+<!--          />-->
+<!--          <li th:style="${list.first}"><a th:href="${firstLink}"> << </a></li>-->
+<!--          <li><a th:href="${list.first} ? '#' : ${prevLink}"> < </a></li>-->
+<!--          <li class="number" th:each="p : ${#numbers.sequence(start, last)}">-->
+<!--            <a th:classappend="${p == list.number + 1} ? 'active'"-->
+<!--               th:href="@{/user/home(page=${p})}" th:text=" ${p} " >-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li><a th:href="${list.last} ? '#' : ${nextLink}"> > </a></li>-->
+<!--          <li><a th:href="${lastLink}"> >> </a></li>-->
+<!--        </ul>-->
+<!--      </div>-->
+    </div>
+  </div>
+</div>
+</body>
+</html>

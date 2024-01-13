@@ -26,4 +26,7 @@ public class User extends BaseEntity {
   private String phone;
   private String address;
   private String role;
+
+  private String impairmentType;
+  private boolean hasWheelchair;
 }

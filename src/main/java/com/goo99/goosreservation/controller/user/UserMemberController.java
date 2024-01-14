@@ -1,7 +1,7 @@
 package com.goo99.goosreservation.controller.user;
 
 import com.goo99.goosreservation.data.dto.UserJoinDto;
-import com.goo99.goosreservation.service.impl.user.UserServiceImpl;
+import com.goo99.goosreservation.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +49,12 @@ public class UserMemberController {
   }
 
   @GetMapping("/login")
-  public String loginP() {
+  public String loginP(@RequestParam(value = "error", required = false) String error,
+                       @RequestParam(value = "exception", required = false) String exception,
+                       Model model) {
+
+    model.addAttribute("error", error);
+    model.addAttribute("exception", exception);
 
     return "user/login";
   }

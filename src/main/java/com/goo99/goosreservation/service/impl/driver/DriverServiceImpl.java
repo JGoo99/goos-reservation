@@ -1,4 +1,4 @@
-package com.goo99.goosreservation.service.impl;
+package com.goo99.goosreservation.service.impl.driver;
 
 import com.goo99.goosreservation.data.dto.DriverJoinDto;
 import com.goo99.goosreservation.exception.CustomException;

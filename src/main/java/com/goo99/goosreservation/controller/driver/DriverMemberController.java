@@ -1,7 +1,7 @@
 package com.goo99.goosreservation.controller.driver;
 
 import com.goo99.goosreservation.data.dto.DriverJoinDto;
-import com.goo99.goosreservation.service.impl.DriverServiceImpl;
+import com.goo99.goosreservation.service.impl.driver.DriverServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

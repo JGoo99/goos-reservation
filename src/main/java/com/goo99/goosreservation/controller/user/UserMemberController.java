@@ -1,7 +1,7 @@
 package com.goo99.goosreservation.controller.user;
 
 import com.goo99.goosreservation.data.dto.UserJoinDto;
-import com.goo99.goosreservation.service.impl.UserServiceImpl;
+import com.goo99.goosreservation.service.impl.user.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

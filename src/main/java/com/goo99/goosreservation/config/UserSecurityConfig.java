@@ -1,7 +1,7 @@
 package com.goo99.goosreservation.config;
 
 import com.goo99.goosreservation.exception.handler.UserLoginFailureHandler;
-import com.goo99.goosreservation.service.impl.UserCustomDetailsServiceImpl;
+import com.goo99.goosreservation.service.impl.user.UserCustomDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

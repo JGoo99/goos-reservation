@@ -1,4 +1,4 @@
-package com.goo99.goosreservation.service.impl;
+package com.goo99.goosreservation.service.impl.user;
 
 import com.goo99.goosreservation.data.dto.UserCustomDetails;
 import com.goo99.goosreservation.data.entity.User;

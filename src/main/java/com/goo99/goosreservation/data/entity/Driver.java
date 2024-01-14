@@ -20,7 +20,7 @@ public class Driver extends BaseEntity {
   @Column(unique = true)
   private String email;
 
-  private String ownerName;
+  private String driverName;
   private String password;
   private String phone;
   private String address;

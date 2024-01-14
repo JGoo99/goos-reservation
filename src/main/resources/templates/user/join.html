@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -23,11 +24,13 @@
             <input id="username" type="text" name="username" placeholder="" required/>
             <label for="username" class="label">이름</label>
             <p class="example">홍길동</p>
+            <p class="alert" th:if="${errors.containsKey('username')}">필수항목입니다.</p>
           </div>
           <div class="input-box" id="second">
             <input id="nickname" type="text" name="nickname" placeholder="" required/>
             <label for="nickname" class="label">닉네임</label>
             <p class="example">Goo99</p>
+            <p class="alert" th:if="${errors.containsKey('nickname')}">3자 이상 10자 이하로 입력해주세요.</p>
           </div>
         </div>
         <div class="text-filed">
@@ -35,6 +38,7 @@
             <input id="email" type="email" name="email" placeholder="" required/>
             <label for="email" class="label">이메일주소</label>
             <p class="example">goo@example.com</p>
+            <p class="alert" th:if="${errors.containsKey('email')}">이메일 형식을 지켜서 입력해주세요.</p>
           </div>
         </div>
         <div class="text-filed">
@@ -42,6 +46,7 @@
             <input id="password" type="text" name="password" placeholder="" required/>
             <label for="password" class="label">비밀번호</label>
             <p class="example">123456789</p>
+            <p class="alert" th:if="${errors.containsKey('password')}">3자 이상 입력해주세요.</p>
           </div>
         </div>
         <div class="text-filed">
@@ -49,6 +54,7 @@
             <input id="phone" type="text" name="phone" placeholder=""/>
             <label for="phone" class="label">전화번호</label>
             <p class="example">010-1234-5678</p>
+            <p class="alert" th:if="${errors.containsKey('username')}">하이픈(-)을 입력해주세요.</p>
           </div>
         </div>
         <div class="text-filed">

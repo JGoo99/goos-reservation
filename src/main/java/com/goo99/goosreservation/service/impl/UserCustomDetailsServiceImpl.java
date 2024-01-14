@@ -2,7 +2,7 @@ package com.goo99.goosreservation.service.impl;
 
 import com.goo99.goosreservation.data.dto.UserCustomDetails;
 import com.goo99.goosreservation.data.entity.User;
-import com.goo99.goosreservation.exception.UserException;
+import com.goo99.goosreservation.exception.CustomException;
 import com.goo99.goosreservation.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,7 +28,7 @@ public class UserCustomDetailsServiceImpl implements UserDetailsService {
     if (user.isPresent()) {
       return new UserCustomDetails(user.get());
     } else {
-      throw new UserException(USER_NOTFOUND);
+      throw new CustomException(USER_NOTFOUND);
     }
 
   }

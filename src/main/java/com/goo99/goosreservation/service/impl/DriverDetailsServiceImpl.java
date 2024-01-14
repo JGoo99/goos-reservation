@@ -1,4 +1,4 @@
-package com.goo99.goosreservation.service.impl.driver;
+package com.goo99.goosreservation.service.impl;
 
 import com.goo99.goosreservation.data.dto.DriverDetails;
 import com.goo99.goosreservation.data.entity.Driver;

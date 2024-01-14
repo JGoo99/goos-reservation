@@ -1,4 +1,4 @@
-package com.goo99.goosreservation.service.impl.user;
+package com.goo99.goosreservation.service.impl;
 
 import com.goo99.goosreservation.data.dto.UserJoinDto;
 import com.goo99.goosreservation.exception.CustomException;

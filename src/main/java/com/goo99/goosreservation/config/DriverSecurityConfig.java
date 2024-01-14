@@ -1,7 +1,7 @@
 package com.goo99.goosreservation.config;
 
 import com.goo99.goosreservation.exception.handler.DriverLoginFailureHandler;
-import com.goo99.goosreservation.service.impl.driver.DriverDetailsServiceImpl;
+import com.goo99.goosreservation.service.impl.DriverDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

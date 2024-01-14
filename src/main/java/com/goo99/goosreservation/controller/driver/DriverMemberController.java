@@ -1,15 +1,13 @@
 package com.goo99.goosreservation.controller.driver;
 
 import com.goo99.goosreservation.data.dto.DriverJoinDto;
-import com.goo99.goosreservation.service.impl.driver.DriverServiceImpl;
+import com.goo99.goosreservation.service.impl.DriverServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -35,7 +33,12 @@ public class DriverMemberController {
   }
 
   @GetMapping("/login")
-  public String loginP() {
+  public String loginP(@RequestParam(value = "error", required = false) String error,
+                       @RequestParam(value = "exception", required = false) String exception,
+                       Model model) {
+
+    model.addAttribute("error", error);
+    model.addAttribute("exception", exception);
 
     return "driver/login";
   }

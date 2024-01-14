@@ -1,11 +1,17 @@
 package com.goo99.goosreservation.controller.user;
 
+import com.goo99.goosreservation.data.dto.PagingDto;
+import com.goo99.goosreservation.data.dto.TaxiInfoDto;
 import com.goo99.goosreservation.data.dto.UserJoinDto;
+import com.goo99.goosreservation.service.impl.TaxiServiceImpl;
 import com.goo99.goosreservation.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +28,7 @@ import java.util.Map;
 public class UserMemberController {
 
   private final UserServiceImpl userService;
+  private final TaxiServiceImpl taxiService;
   private final Logger LOGGER = LoggerFactory.getLogger(UserMemberController.class);
 
   @GetMapping("/join")
@@ -60,7 +67,17 @@ public class UserMemberController {
   }
 
   @GetMapping("/home")
-  public String homeP() {
+  public String homeP(@RequestParam(defaultValue = "1") int page,
+                      @ModelAttribute PagingDto pagingDto,
+                      @PageableDefault(page = 1) Pageable pageable, Model model) {
+
+    pagingDto.setPageNum(page);
+    Page<TaxiInfoDto> list = taxiService.getList(pagingDto);
+    pagingDto.setPagingDto(pageable, list.getTotalPages());
+
+    model.addAttribute("list", list);
+    model.addAttribute("startPage", pagingDto.getStartPage());
+    model.addAttribute("endPage", pagingDto.getEndPage());
 
     return "user/home";
   }

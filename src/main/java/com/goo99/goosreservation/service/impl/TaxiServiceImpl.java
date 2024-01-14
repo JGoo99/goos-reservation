@@ -30,6 +30,8 @@ public class TaxiServiceImpl implements TaxiService {
     Taxi taxi = taxiRepo.save(TaxiAddDto.toEntity(taxiAddDto));
 
     Driver driver = findDriverById(taxiAddDto.getDriverId());
+    driver.setTaxiId(taxi.getId());
+    driverRepo.save(driver);
 
     return TaxiInfoDto.from(taxi, driver);
   }

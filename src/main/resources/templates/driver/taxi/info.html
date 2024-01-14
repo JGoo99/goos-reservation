@@ -15,19 +15,19 @@
 <div id="default">
   <div id="container">
     <div class="contents">
-      <div class="title">
-        <a href="/home" id="home">Goo's Reservation</a>
+      <div class="title" id="driver-title">
+        <a href="/driver/home" id="home">Goo's Reservation</a>
         <div class="member-wrap">
-          <div class="is-login" sec:authorize="hasRole('USER')">
-            <a href="/user/my" sec:authentication="principal.nickname"></a>
-            <p>고객님</p>
+          <div class="is-login" sec:authorize="hasRole('DRIVER')">
+            <a href="/driver/my" sec:authentication="name"></a>
+            <p>기사님</p>
             <span> | </span>
-            <a href="/logout">로그아웃</a>
+            <a href="/driver/logout">로그아웃</a>
           </div>
-          <div class="is-logout" sec:authorize="hasRole('DRIVER') or isAnonymous()">
-            <a href="/join">회원가입</a>
+          <div class="is-logout" sec:authorize="hasRole('USER') or isAnonymous()">
+            <a href="/driver/join">회원가입</a>
             <span> | </span>
-            <a href="/login">로그인</a>
+            <a href="/driver/login">로그인</a>
           </div>
         </div>
       </div>
@@ -68,8 +68,7 @@
           </div>
         </div>
         <div class="move">
-          <a th:href="@{/taxi/reserv(taxiId=${taxiInfo.taxiId})}">예약가능한 시간 알아보기 👉🏻👉🏻</a>
-          <a href="/home">홈으로</a>
+          <a href="/driver/home">홈으로</a>
         </div>
       </div>
     </div>

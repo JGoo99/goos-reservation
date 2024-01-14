@@ -1,5 +1,6 @@
 package com.goo99.goosreservation.controller.driver;
 
+import com.goo99.goosreservation.data.dto.DriverDetails;
 import com.goo99.goosreservation.data.dto.DriverJoinDto;
 import com.goo99.goosreservation.data.dto.PagingDto;
 import com.goo99.goosreservation.data.dto.TaxiInfoDto;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,12 +55,19 @@ public class DriverMemberController {
   @GetMapping("/home")
   public String homeP(@RequestParam(defaultValue = "1") int page,
                       @ModelAttribute PagingDto pagingDto,
-                      @PageableDefault(page = 1) Pageable pageable, Model model) {
+                      @PageableDefault(page = 1) Pageable pageable, Model model,
+                      @AuthenticationPrincipal DriverDetails details) {
 
     pagingDto.setPageNum(page);
     Page<TaxiInfoDto> list = taxiService.getList(pagingDto);
     pagingDto.setPagingDto(pageable, list.getTotalPages());
 
+    boolean isTaxiRegistered = false;
+    if (details != null) {
+      isTaxiRegistered = driverService.isTaxiRegistered(details.getId());
+    }
+
+    model.addAttribute("isTaxiRegistered", isTaxiRegistered);
     model.addAttribute("list", list);
     model.addAttribute("startPage", pagingDto.getStartPage());
     model.addAttribute("endPage", pagingDto.getEndPage());

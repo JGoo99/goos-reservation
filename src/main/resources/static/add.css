@@ -93,7 +93,7 @@ textarea:not(:placeholder-shown) + label {
     top: 13px;
 }
 
-#time {
+#two {
     display: flex;
 }
 

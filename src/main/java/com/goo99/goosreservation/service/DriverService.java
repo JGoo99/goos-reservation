@@ -6,4 +6,5 @@ public interface DriverService {
 
   boolean join(DriverJoinDto driverJoinDto);
 
+  boolean isTaxiRegistered(Long driverId);
 }

@@ -50,7 +50,7 @@
         <div class="selector-wrap">
           <p>가나다순</p>
         </div>
-        <div class="selector-wrap" id="add-button">
+        <div class="selector-wrap" id="add-button" th:unless="${isTaxiRegistered}">
           <a href="/driver/taxi/add">택시 등록하러 가기 👉🏻👉🏻</a>
         </div>
       </div>

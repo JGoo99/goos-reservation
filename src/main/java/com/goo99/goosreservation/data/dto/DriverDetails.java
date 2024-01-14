@@ -47,6 +47,8 @@ public class DriverDetails implements UserDetails {
     return driver.getId();
   }
 
+  public Long getTaxiId() { return driver.getTaxiId(); }
+
   @Override
   public boolean isAccountNonExpired() {
     return true;

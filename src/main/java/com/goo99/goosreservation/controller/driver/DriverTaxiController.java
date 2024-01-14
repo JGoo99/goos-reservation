@@ -6,10 +6,7 @@ import com.goo99.goosreservation.service.impl.TaxiServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,4 +30,12 @@ public class DriverTaxiController {
     return "driver/taxi/add-success";
   }
 
+  @GetMapping("/info")
+  public String detailP(@RequestParam Long taxiId, Model model) {
+
+    TaxiInfoDto taxiInfo = taxiService.getInfo(taxiId);
+    model.addAttribute("taxiInfo", taxiInfo);
+
+    return "driver/taxi/info";
+  }
 }

@@ -73,13 +73,14 @@ label {
 
 .move {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 15px;
 }
 
 .move a, button {
-    margin: 0 20px;
+    margin: 10px;
     color: darkslategray;
     font-size: 12pt;
 }

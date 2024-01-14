@@ -50,7 +50,7 @@ public class UserSecurityConfig {
       .authenticationProvider(userDaoAuthenticationProvider())
       .authorizeHttpRequests((auth) -> auth
         .requestMatchers("/user/home").permitAll()
-        .requestMatchers("/user/**").hasRole("USER")
+        .requestMatchers("/user/**", "/taxi/**").hasRole("USER")
         .anyRequest().permitAll()
       );
 

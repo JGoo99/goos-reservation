@@ -118,11 +118,11 @@ input:not(:placeholder-shown) + label {
     background-color: #3272b2;
 }
 
-.submit-button-driver {
+#submit-button-driver {
     background-color: #d96161;
 }
 
-.submit-button-driver:hover {
+#submit-button-driver:hover {
     background-color: #b45151;
 }
 

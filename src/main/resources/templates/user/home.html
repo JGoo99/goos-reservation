@@ -50,7 +50,7 @@
       <div class="taxi-box">
         <div class="intro" th:if="${list.totalPages} == '0'">아직 등록된 택시가 없습니다.</div>
         <div class="taxi-list">
-          <a th:href="@{/driver/taxi/info(taxiId=${x.taxiId})}" class="taxi-ele" th:each="x : ${list}">
+          <a th:href="@{/taxi/info(taxiId=${x.taxiId})}" class="taxi-ele" th:each="x : ${list}">
             <p class="ele-title" th:text="${x.carType}"></p>
             <div class="ele-summary">
               <div class="stars">

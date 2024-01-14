@@ -9,4 +9,6 @@ public interface TaxiService {
   TaxiInfoDto add(TaxiAddDto taxiAddDto);
 
   Page<TaxiInfoDto> getList(PagingDto pagingDto);
+
+  TaxiInfoDto getInfo(Long taxiId);
 }

@@ -29,7 +29,7 @@ public class TaxiServiceImpl implements TaxiService {
 
     Taxi taxi = taxiRepo.save(TaxiAddDto.toEntity(taxiAddDto));
 
-    Driver driver = findById(taxiAddDto.getDriverId());
+    Driver driver = findDriverById(taxiAddDto.getDriverId());
 
     return TaxiInfoDto.from(taxi, driver);
   }
@@ -42,12 +42,26 @@ public class TaxiServiceImpl implements TaxiService {
         Sort.by(Sort.Direction.DESC, "reviewCount")));
 
     return list.map(m -> {
-      return TaxiInfoDto.from(m, findById(m.getDriverId()));
+      return TaxiInfoDto.from(m, findDriverById(m.getDriverId()));
     });
   }
 
-  public Driver findById(Long driverId) {
+  @Override
+  public TaxiInfoDto getInfo(Long taxiId) {
+
+    Taxi taxi = findTaxiById(taxiId);
+    Driver driver = findDriverById(taxi.getDriverId());
+
+    return TaxiInfoDto.from(taxi, driver);
+  }
+
+  public Driver findDriverById(Long driverId) {
     return driverRepo.findById(driverId)
+      .orElseThrow(() -> new CustomException(DRIVER_NOTFOUND));
+  }
+
+  public Taxi findTaxiById(Long taxiId) {
+    return taxiRepo.findById(taxiId)
       .orElseThrow(() -> new CustomException(DRIVER_NOTFOUND));
   }
 }

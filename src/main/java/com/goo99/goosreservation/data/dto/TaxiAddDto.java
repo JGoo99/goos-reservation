@@ -16,7 +16,7 @@ public class TaxiAddDto {
   @NotNull
   private String CarType;
 
-  @Size(min = 1, max = 30)
+  @Size(min = 1, max = 20)
   private String oneLineExplain;
 
   @Min(0) @Max(24)

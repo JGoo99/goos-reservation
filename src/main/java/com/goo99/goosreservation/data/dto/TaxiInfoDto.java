@@ -1,5 +1,6 @@
 package com.goo99.goosreservation.data.dto;
 
+import com.goo99.goosreservation.data.entity.Driver;
 import com.goo99.goosreservation.data.entity.Taxi;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +13,8 @@ import lombok.ToString;
 @ToString
 public class TaxiInfoDto {
 
+  private Long taxiId;
+
   private String carType;
   private String oneLineExplain;
 
@@ -22,16 +25,19 @@ public class TaxiInfoDto {
   private int reviewCount;
 
   private String driverName;
+  private String driverPhone;
 
-  public static TaxiInfoDto from(Taxi taxi, String driverName) {
+  public static TaxiInfoDto from(Taxi taxi, Driver driver) {
     return TaxiInfoDto.builder()
+      .taxiId(taxi.getId())
       .carType(taxi.getCarType())
       .oneLineExplain(taxi.getOneLineExplain())
       .open(taxi.getOpen())
       .close(taxi.getClose())
       .stars(taxi.getStars())
       .reviewCount(taxi.getReviewCount())
-      .driverName(driverName)
+      .driverName(driver.getDriverName())
+      .driverPhone(driver.getPhone())
       .build();
   }
 }

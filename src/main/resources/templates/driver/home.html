@@ -54,49 +54,48 @@
           <a href="/driver/taxi/add">택시 등록하러 가기 👉🏻👉🏻</a>
         </div>
       </div>
-<!--      <div class="taxi-box">-->
-<!--        <div class="intro" th:if="${list.totalPages} == '0'">아직 등록된 택시가 없습니다.</div>-->
-<!--        <div class="taxi-list">-->
-<!--          <a th:href="@{/driver/taxi/info(taxiId=${x.taxiId})}" class="taxi-ele" th:each="x : ${list}">-->
-<!--            <p class="ele-title" th:text="${x.carType}"></p>-->
-<!--            <div class="ele-summary">-->
-<!--              <div class="stars">-->
-<!--                <div class="icon-star">⭐</div>-->
-<!--                <div class="stars-value" th:if="${x.reviewCount} == '0'" th:text="0.0"></div>-->
-<!--                <div class="stars-value" th:unless="${x.reviewCount} == '0'" th:text="${x.stars} / ${x.reviewCount}"></div>-->
-<!--              </div>-->
-<!--              <div class="review-count">-->
-<!--                <p>리뷰</p>-->
-<!--                <p id="review-count" th:text="${x.reviewCount}"></p>-->
-<!--                <p>개</p>-->
-<!--              </div>-->
-<!--              <div class="location">-->
-<!--                <p th:text="${x.address1}"></p>-->
-<!--                <p th:text="${x.address2}"></p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="paging-wrap" th:unless="${list.totalPages}== '0'">-->
-<!--        <ul th:with="start=${startPage}, last=${endPage}">-->
-<!--          <th:block th:with="-->
-<!--          firstLink=@{/driver/home(page=1)},-->
-<!--          prevLink=@{/driver/home(page=${list.number})},-->
-<!--          nextLink=@{/driver/home(page=${list.number + 2})},-->
-<!--          lastLink=@{/driver/home(page=${list.totalPages})}"-->
-<!--          />-->
-<!--          <li th:style="${list.first}"><a th:href="${firstLink}"> << </a></li>-->
-<!--          <li><a th:href="${list.first} ? '#' : ${prevLink}"> < </a></li>-->
-<!--          <li class="number" th:each="p : ${#numbers.sequence(start, last)}">-->
-<!--            <a th:classappend="${p == list.number + 1} ? 'active'"-->
-<!--               th:href="@{/driver/home(page=${p})}" th:text=" ${p} " >-->
-<!--            </a>-->
-<!--          </li>-->
-<!--          <li><a th:href="${list.last} ? '#' : ${nextLink}"> > </a></li>-->
-<!--          <li><a th:href="${lastLink}"> >> </a></li>-->
-<!--        </ul>-->
-<!--      </div>-->
+      <div class="taxi-box">
+        <div class="intro" th:if="${list.totalPages} == '0'">아직 등록된 택시가 없습니다.</div>
+        <div class="taxi-list">
+          <a th:href="@{/driver/taxi/info(taxiId=${x.taxiId})}" class="taxi-ele" th:each="x : ${list}">
+            <p class="ele-title" th:text="${x.carType}"></p>
+            <div class="ele-summary">
+              <div class="stars">
+                <div class="icon-star">⭐</div>
+                <div class="stars-value" th:if="${x.reviewCount} == '0'" th:text="0.0"></div>
+                <div class="stars-value" th:unless="${x.reviewCount} == '0'" th:text="${x.stars} / ${x.reviewCount}"></div>
+              </div>
+              <div class="review-count">
+                <p>리뷰</p>
+                <p id="review-count" th:text="${x.reviewCount}"></p>
+                <p>개</p>
+              </div>
+              <div class="oneLineExplain">
+                <p th:text="${x.oneLineExplain}"></p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="paging-wrap" th:unless="${list.totalPages}== '0'">
+        <ul th:with="start=${startPage}, last=${endPage}">
+          <th:block th:with="
+          firstLink=@{/driver/home(page=1)},
+          prevLink=@{/driver/home(page=${list.number})},
+          nextLink=@{/driver/home(page=${list.number + 2})},
+          lastLink=@{/driver/home(page=${list.totalPages})}"
+          />
+          <li th:style="${list.first}"><a th:href="${firstLink}"> << </a></li>
+          <li><a th:href="${list.first} ? '#' : ${prevLink}"> < </a></li>
+          <li class="number" th:each="p : ${#numbers.sequence(start, last)}">
+            <a th:classappend="${p == list.number + 1} ? 'active'"
+               th:href="@{/driver/home(page=${p})}" th:text=" ${p} " >
+            </a>
+          </li>
+          <li><a th:href="${list.last} ? '#' : ${nextLink}"> > </a></li>
+          <li><a th:href="${lastLink}"> >> </a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

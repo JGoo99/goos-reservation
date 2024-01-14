@@ -16,6 +16,11 @@ body {
     margin-bottom: 0;
 }
 
+.error {
+    color: #cd5c5c;
+    margin-top: 12px;
+}
+
 form {
     padding: 10px;
 }

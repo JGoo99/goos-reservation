@@ -20,14 +20,6 @@
     margin: 10px 10px;
 }
 
-label {
-    position: absolute;
-    left: 5px;
-    top: 20px;
-    font-size: 12pt;
-    color: #aaa;
-}
-
 label:hover {
     cursor: text;
 }
@@ -54,7 +46,7 @@ textarea {
     font-size: 7pt;
 }
 
-input:not(:placeholder-shown) + label {
+label {
     position: absolute;
     font-size: 10px;
     left: 4px;
@@ -68,7 +60,7 @@ input:not(:placeholder-shown) + label {
     top: 13px;
 }
 
-#place, #time {
+#time {
     display: flex;
 }
 

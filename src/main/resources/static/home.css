@@ -114,7 +114,7 @@
     background-color: #e3aa09;
 }
 
-.shop-box {
+.taxi-box {
     position: relative;
     margin-top: 5px;
     width: 500px;
@@ -124,22 +124,21 @@
     overflow: hidden;
 }
 
-.shop-list {
+.taxi-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
 }
 
-.shop-list a {
+.taxi-list a {
     color: black;
     overflow: hidden;
-    border-bottom: 0.5px solid #bfbebe;
 }
 
 
-.shop-ele {
-    padding: 15px;
+.taxi-list {
+    padding: 15px 15px 0;
 }
 
 .ele-summary {
@@ -173,15 +172,19 @@
     margin-left: 3px;
 }
 
-.location {
+.oneLineExplain {
     display: flex;
     margin-left: 10px;
 }
 
-.location p {
+.oneLineExplain p {
     color: #727272;
     font-size: 9pt;
     margin-right: 4px;
+}
+
+.taxi-ele {
+    padding-bottom: 15px;
 }
 
 .taxi-ele:hover .ele-title {

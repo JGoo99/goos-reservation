@@ -1,43 +1,17 @@
-@import "default.css";
-
-body {
-    padding: 0 0 60px 0;
-}
-
-.title {
-    font-family: "BMDOHYEON", sans-serif;
-    font-size: 30px;
-    padding: 5px;
-    margin: 10px 0 4px;
-}
+@import "default2.css";
 
 .intro {
-    font-size: 14px;
-    margin-bottom: 0;
+    font-size: 20px;
+    margin: 10px;
 }
 
 form {
     padding: 10px;
 }
 
-#two {
-    display: flex;
-}
-
-#two #second {
-    margin-left: 7px;
-}
-
 .input-box {
     position: relative;
-    margin: 10px 0;
-}
-
-.check-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
+    margin: 10px 10px;
 }
 
 label {
@@ -52,20 +26,40 @@ label:hover {
     cursor: text;
 }
 
-.example {
-    margin-top: 4px;
-    margin-left: 10px;
-    color: darkslategray;
-    font-size: 7pt;
-}
-
-.input-box > input {
+.input-box > input,
+textarea {
     margin-top: 10px;
     border: none;
     border-bottom: solid 1px #ccc;
     padding-top: 13px;
     font-size: 14pt;
     width: 100%;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+}
+
+.explain {
+    margin-left: 13px;
+    color: darkslategray;
+    font-size: 7pt;
+}
+
+p > a {
+    color: black;
+    border-bottom: 0.2px solid #606060;
+}
+
+textarea:focus + label {
+    position: absolute;
+    font-size: 10px;
+    left: 4px;
+    top: 13px;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
 }
 
 input:focus + label {
@@ -78,7 +72,8 @@ input:focus + label {
     -moz-transition: all 0.2s ease;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
     outline: none;
     border-bottom: solid 1px darkslategray;
     transition-duration: 0.7s;
@@ -91,7 +86,26 @@ input:not(:placeholder-shown) + label {
     top: 13px;
 }
 
-.submit-button {
+textarea:not(:placeholder-shown) + label {
+    position: absolute;
+    font-size: 10px;
+    left: 4px;
+    top: 13px;
+}
+
+#time {
+    display: flex;
+}
+
+.example {
+    margin-top: 4px;
+    margin-left: 10px;
+    color: darkslategray;
+    font-size: 7pt;
+}
+
+.submit-button,
+.submit-button-driver {
     font-family: "GmarketSansMedium", sans-serif;
     letter-spacing: 1px;
     display: block;
@@ -112,21 +126,10 @@ input:not(:placeholder-shown) + label {
     background-color: #3272b2;
 }
 
-#submit-button-driver {
+.submit-button-driver {
     background-color: #d96161;
 }
 
-#submit-button-driver:hover {
+.submit-button-driver:hover {
     background-color: #b45151;
-}
-
-#to-join {
-    margin: auto;
-    font-size: 12px;
-    text-decoration: none;
-    color: #606060;
-}
-
-#to-join:hover {
-    text-decoration: underline;
 }

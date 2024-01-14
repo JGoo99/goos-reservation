@@ -18,8 +18,9 @@ public class Taxi extends BaseEntity {
   private Long id;
 
   @Column(unique = true)
-  private String CarType;
+  private Long driverId;
 
+  private String carType;
   private String oneLineExplain;
 
   private int stars; // 총 별점
@@ -27,6 +28,4 @@ public class Taxi extends BaseEntity {
 
   private int open;
   private int close;
-
-  private Long driverId;
 }

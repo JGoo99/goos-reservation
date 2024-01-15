@@ -9,9 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user")
+@Table(name = "owner")
 @ToString(callSuper = true)
-public class User extends BaseEntity {
+public class Owner extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,11 @@ public class User extends BaseEntity {
   @Column(unique = true)
   private String email;
 
-  private String username;
-  private String nickname;
+  private String ownerName;
   private String password;
   private String phone;
   private String address;
   private String role;
+
+  private Long studioId;
 }

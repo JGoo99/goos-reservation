@@ -1,9 +1,9 @@
 package com.goo99.goosreservation.service.impl;
 
-import com.goo99.goosreservation.data.dto.user.UserCustomDetails;
-import com.goo99.goosreservation.data.entity.User;
+import com.goo99.goosreservation.data.dto.owner.OwnerDetails;
+import com.goo99.goosreservation.data.entity.Owner;
 import com.goo99.goosreservation.exception.CustomException;
-import com.goo99.goosreservation.repository.UserRepo;
+import com.goo99.goosreservation.repository.OwnerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,23 +12,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static com.goo99.goosreservation.type.ErrorCode.USER_NOTFOUND;
+import static com.goo99.goosreservation.type.ErrorCode.OWNER_NOTFOUND;
 
 @Service
-public class UserCustomDetailsServiceImpl implements UserDetailsService {
+public class OwnerDetailsServiceImpl implements UserDetailsService {
 
   @Autowired
-  UserRepo userRepo;
+  OwnerRepo ownerRepo;
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-    Optional<User> user = userRepo.findByEmail(email);
+    Optional<Owner> owner = ownerRepo.findByEmail(email);
 
-    if (user.isPresent()) {
-      return new UserCustomDetails(user.get());
+    if (owner.isPresent()) {
+      return new OwnerDetails(owner.get());
     } else {
-      throw new CustomException(USER_NOTFOUND);
+      throw new CustomException(OWNER_NOTFOUND);
     }
 
   }

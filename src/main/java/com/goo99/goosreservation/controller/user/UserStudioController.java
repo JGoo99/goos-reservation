@@ -1,0 +1,97 @@
+package com.goo99.goosreservation.controller.user;
+
+import com.goo99.goosreservation.data.dto.ReservationInfoDto;
+import com.goo99.goosreservation.data.dto.user.ReservationAddDto;
+import com.goo99.goosreservation.data.dto.StudioInfoDto;
+import com.goo99.goosreservation.service.impl.ReservationServiceImpl;
+import com.goo99.goosreservation.service.impl.StudioServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.Queue;
+
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/studio")
+public class UserStudioController {
+
+  private final StudioServiceImpl studioService;
+  private final ReservationServiceImpl reservationService;
+
+  @GetMapping("/info")
+  public String detailP(@RequestParam Long studioId, Model model) {
+
+    StudioInfoDto studioInfo = studioService.getInfo(studioId);
+    model.addAttribute("studioInfo", studioInfo);
+
+    return "user/studio/info";
+  }
+
+  /**
+   * 매장 예약 : 년도와 달을 고르는 페이지
+   * @return 매장 예약 중 년도와 달을 고르는 페이지
+   */
+  @GetMapping("/reserv")
+  public String reservP(@RequestParam Long studioId, Model model) {
+
+    model.addAttribute("studioId", studioId);
+
+    return "user/studio/reservation";
+  }
+
+  /**
+   * 매장 예약 : 날짜를 고르는 페이지
+   */
+  @PostMapping("/reserv.proc1")
+  public String reservProc1P(@ModelAttribute ReservationAddDto addDto, Model model) {
+    int lastDays =
+      LocalDate.of(addDto.getYear(), addDto.getMonth() + 1, 1)
+        .minusDays(1).getDayOfMonth();
+
+    model.addAttribute("days", addDto);
+    model.addAttribute("lastDays", lastDays);
+
+    return "user/studio/reservation-day";
+  }
+
+  /**
+   * 매장 예약 : 시각을 고르는 페이지
+   * @return 예약가능한 시간만 선택할 수 있도록 한다.
+   */
+  @PostMapping("/reserv.proc2")
+  public String reservProc2P(@ModelAttribute ReservationAddDto addDto, Model model) {
+
+    Queue<Integer> availableTimes = reservationService.getAvailableTimeList(addDto);
+
+    int lastDays =
+      LocalDate.of(addDto.getYear(), addDto.getMonth() + 1, 1)
+        .minusDays(1).getDayOfMonth();
+
+    reservationService.setOpeningHours(addDto);
+
+    model.addAttribute("days", addDto);
+    model.addAttribute("availableTimes", availableTimes);
+    model.addAttribute("lastDays", lastDays);
+
+    return "user/studio/reservation-time";
+  }
+
+  /**
+   * 매장 예약 : 모든 정보를 받아서 예약 db 에 저장.
+   * @param addDto .
+   * @param model .
+   * @return 저장 시 예약정보를 확인할 수 있는 페이지
+   */
+  @PostMapping("/reserv.proc3")
+  public String reservProc3P(@ModelAttribute ReservationAddDto addDto, Model model) {
+
+    ReservationInfoDto infoDto = reservationService.save(addDto);
+    model.addAttribute("info", infoDto);
+
+    return "user/studio/reservation-success";
+  }
+
+}

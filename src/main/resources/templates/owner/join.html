@@ -1,13 +1,12 @@
 <!doctype html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/member.css"/>
-  <title>User Join</title>
+  <title>Owner Join</title>
 </head>
 <body>
 
@@ -17,20 +16,13 @@
       <div class="title">
         <a href="/" id="home">Goo's Reservation</a>
       </div>
-      <p class="intro">고객님의 회원가입 정보를 입력해주세요.</p>
-      <form action="/joinProc" method="post" class="joinForm">
-        <div class="text-filed" id="two">
+      <p class="intro">오너님의 회원가입 정보를 입력해주세요.</p>
+      <form action="/owner/joinProc" method="post" class="joinForm">
+        <div class="text-filed">
           <div class="input-box">
-            <input id="username" type="text" name="username" placeholder="" required/>
-            <label for="username" class="label">이름</label>
+            <input id="ownerName" type="text" name="ownerName" placeholder="" required/>
+            <label for="ownerName" class="label">이름</label>
             <p class="example">홍길동</p>
-            <p class="alert" th:if="${errors.containsKey('username')}">필수항목입니다.</p>
-          </div>
-          <div class="input-box" id="second">
-            <input id="nickname" type="text" name="nickname" placeholder="" required/>
-            <label for="nickname" class="label">닉네임</label>
-            <p class="example">Goo99</p>
-            <p class="alert" th:if="${errors.containsKey('nickname')}">3자 이상 10자 이하로 입력해주세요.</p>
           </div>
         </div>
         <div class="text-filed">
@@ -38,7 +30,6 @@
             <input id="email" type="email" name="email" placeholder="" required/>
             <label for="email" class="label">이메일주소</label>
             <p class="example">goo@example.com</p>
-            <p class="alert" th:if="${errors.containsKey('email')}">이메일 형식을 지켜서 입력해주세요.</p>
           </div>
         </div>
         <div class="text-filed">
@@ -46,7 +37,6 @@
             <input id="password" type="text" name="password" placeholder="" required/>
             <label for="password" class="label">비밀번호</label>
             <p class="example">123456789</p>
-            <p class="alert" th:if="${errors.containsKey('password')}">3자 이상 입력해주세요.</p>
           </div>
         </div>
         <div class="text-filed">
@@ -54,7 +44,6 @@
             <input id="phone" type="text" name="phone" placeholder=""/>
             <label for="phone" class="label">전화번호</label>
             <p class="example">010-1234-5678</p>
-            <p class="alert" th:if="${errors.containsKey('username')}">하이픈(-)을 입력해주세요.</p>
           </div>
         </div>
         <div class="text-filed">
@@ -64,7 +53,7 @@
             <p class="example">OO로OO길 OO</p>
           </div>
         </div>
-        <button type="submit" class="submit-button">회원가입</button>
+        <button type="submit" class="submit-button" id="submit-button-owner">회원가입</button>
       </form>
     </div>
   </div>

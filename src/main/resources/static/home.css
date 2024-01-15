@@ -11,7 +11,7 @@
     overflow: hidden;
 }
 
-#driver-search-box {
+#owner-search-box {
     box-shadow: 1px 1px 1px #a46565;
 }
 
@@ -48,11 +48,11 @@
     transform: translate(8px, 8px) rotate(315deg);
 }
 
-#driver-icon::before {
+#owner-icon::before {
     border: 4px solid #d96161;
 }
 
-#driver-icon::after {
+#owner-icon::after {
     background-color: #d96161;
 }
 
@@ -94,27 +94,27 @@
     background-color: #3376b9;
 }
 
-#driver-dir-selector .selector-wrap {
+#owner-dir-selector .selector-wrap {
     background-color: #e77070;
 }
 
-#driver-dir-selector .selector-wrap:hover {
+#owner-dir-selector .selector-wrap:hover {
     background-color: #d26565;
 }
 
-#driver-dir-selector #add-button {
+#owner-dir-selector #add-button {
     margin-left: auto;
     margin-right: 10px;
     background-color: #ffbe0a;
 }
 
-#driver-dir-selector #add-button:hover {
+#owner-dir-selector #add-button:hover {
     margin-left: auto;
     margin-right: 10px;
     background-color: #e3aa09;
 }
 
-.taxi-box {
+.studio-box {
     position: relative;
     margin-top: 5px;
     width: 500px;
@@ -124,20 +124,20 @@
     overflow: hidden;
 }
 
-.taxi-list {
+.studio-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
 }
 
-.taxi-list a {
+.studio-list a {
     color: black;
     overflow: hidden;
 }
 
 
-.taxi-list {
+.studio-list {
     padding: 15px 15px 0;
 }
 
@@ -183,15 +183,16 @@
     margin-right: 4px;
 }
 
-.taxi-ele {
-    padding-bottom: 15px;
+.studio-ele {
+    padding-top: 2px;
+    padding-bottom: 17px;
 }
 
-.taxi-ele:hover .ele-title {
+.studio-ele:hover .ele-title {
     border-bottom: 1px solid black;
 }
 
-.taxi-ele::before {
+.studio-ele::before {
     content: "";
     position: absolute;
     left: 470px;
@@ -201,7 +202,7 @@
     transform: translate(-4px, 9px) rotate(315deg);
 }
 
-.taxi-ele::after {
+.studio-ele::after {
     content: "";
     position: absolute;
     left: 470px;

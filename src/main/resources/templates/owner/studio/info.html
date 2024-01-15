@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/info.css">
+  <title>Studio Info</title>
+</head>
+<body>
+<div id="default">
+  <div id="container">
+    <div class="contents">
+      <div class="title" id="owner-title">
+        <a href="/owner/home" id="home">Goo's Reservation</a>
+        <div class="member-wrap">
+          <div class="is-login" sec:authorize="hasRole('OWNER')">
+            <a href="/owner/my" sec:authentication="name"></a>
+            <p>오너님</p>
+            <span> | </span>
+            <a href="/owner/logout">로그아웃</a>
+          </div>
+        </div>
+      </div>
+      <p class="intro">택시 상세 정보</p>
+      <div class="info-details">
+        <div class="text-filed">
+          <div class="input-box">
+            <input id="studio-name" type="text" name="studioName" th:value="${studioInfo.studioName}" readonly/>
+            <label for="studio-name" class="label">차모델명</label>
+          </div>
+        </div>
+        <div class="text-filed">
+          <div class="input-box">
+            <textarea id="explain" name="studioExplain" cols="10" rows="1" th:text="${studioInfo.oneLineExplain}" readonly></textarea>
+            <label id="explain_label" for="explain" class="label">한줄소개</label>
+          </div>
+        </div>
+        <div class="text-filed" id="time">
+          <div class="input-box">
+            <input id="ownerName" type="text" name="ownerName" th:value="${studioInfo.ownerName}" readonly/>
+            <label for="ownerName" class="label">오너님성함</label>
+          </div>
+          <div class="input-box">
+            <input id="ownerPhone" type="text" name="ownerPhone" th:value="${studioInfo.ownerPhone}" readonly/>
+            <label for="ownerPhone" class="label">오너님번호</label>
+            <p class="example">마감시각에 예약할 경우 최대 1시간 예약가능</p>
+          </div>
+        </div>
+        <div class="text-filed" id="two">
+          <div class="input-box">
+            <input id="open" type="text" name="open" th:value="${studioInfo.open + '시'}" readonly/>
+            <label for="open" class="label">예약 오픈 시각</label>
+          </div>
+          <div class="input-box">
+            <input id="close" type="text" name="close" th:value="${studioInfo.close - 2 + '시 50분'}" readonly/>
+            <label for="close" class="label">예약 마감 시각</label>
+            <p class="example">마감시각에 예약할 경우 최대 1시간 예약가능</p>
+          </div>
+        </div>
+        <div class="move">
+          <a href="/owner/home">홈으로</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

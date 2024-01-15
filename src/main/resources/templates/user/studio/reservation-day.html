@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/reservation-add.css">
+  <title>Studio Reservation</title>
+  <script type="text/javascript">
+    function check() {
+      const today = new Date();
+      const submitForm = document.querySelector("#addForm");
+      
+      const selectedYear = submitForm.querySelector("#year").value;
+      const selectedMonth = submitForm.querySelector("#month").value;
+      const selectedDate = submitForm.querySelector("#date").value;
+      
+      if (Number(selectedYear) === today.getFullYear()) {
+        if (Number(selectedMonth) === today.getMonth() + 1) {
+          if (Number(selectedDate) < today.getDate()) {
+            alert("예약할 수 없는 날짜입니다.");
+            return false;
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+<div id="default">
+  <div id="container">
+    <div class="contents">
+      <div class="title">
+        <a href="/home" id="home">Goo's Reservation</a>
+        <div class="member-wrap">
+          <div class="is-login" sec:authorize="hasRole('USER')">
+            <a href="/my" sec:authentication="principal.nickname"></a>
+            <p>고객님</p>
+            <span> | </span>
+            <a href="/logout">로그아웃</a>
+          </div>
+        </div>
+      </div>
+      <th:block th:with="year=${days.year}, month=${days.month}">
+        <p class="intro" th:text="${year + '년 ' + month + '월'}"></p>
+        <p class="intro">원하시는 날짜를 선택하세요.</p>
+        <form action="/studio/reserv.proc2" method="post" id="addForm">
+          <div class="selector">
+            <select id="date" name="date" th:with="lastdays=${lastDays}">
+              <th:block th:each="i : ${#numbers.sequence(1, lastDays)}">
+                <option th:value="${i}" th:text="${i}"></option>
+              </th:block>
+            </select>
+          </div>
+          <input id="year" type="hidden" name="year" th:value="${year}">
+          <input id="month" type="hidden" name="month" th:value="${month}">
+          <input type="hidden" name="studioId" th:value="${days.studioId}">
+          <div class="move">
+            <button type="submit" onclick="return check()">다음</button>
+          </div>
+        </form>
+      </th:block>
+      
+      <div class="move">
+        <a th:href="@{/studio/reserv(studioId=${days.studioId})}">👈이전</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

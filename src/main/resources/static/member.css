@@ -117,11 +117,11 @@ input:not(:placeholder-shown) + label {
     background-color: #3272b2;
 }
 
-#submit-button-driver {
+#submit-button-owner {
     background-color: #d96161;
 }
 
-#submit-button-driver:hover {
+#submit-button-owner:hover {
     background-color: #b45151;
 }
 

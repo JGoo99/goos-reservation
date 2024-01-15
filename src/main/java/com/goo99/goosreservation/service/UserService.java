@@ -1,6 +1,6 @@
 package com.goo99.goosreservation.service;
 
-import com.goo99.goosreservation.data.dto.UserJoinDto;
+import com.goo99.goosreservation.data.dto.user.UserJoinDto;
 import org.springframework.validation.ObjectError;
 
 import java.util.List;

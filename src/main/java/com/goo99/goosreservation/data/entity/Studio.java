@@ -9,21 +9,23 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user")
+@Table(name = "studio")
 @ToString(callSuper = true)
-public class User extends BaseEntity {
+public class Studio extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(unique = true)
-  private String email;
+  private Long ownerId;
 
-  private String username;
-  private String nickname;
-  private String password;
-  private String phone;
-  private String address;
-  private String role;
+  private String studioName;
+  private String oneLineExplain;
+
+  private int stars; // 총 별점
+  private int reviewCount;
+
+  private int open;
+  private int close;
 }

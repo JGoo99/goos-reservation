@@ -26,12 +26,26 @@
           </div>
         </div>
       </div>
-      <p class="intro">택시 상세 정보</p>
+      <p class="intro">시설 상세 정보</p>
       <div class="info-details">
         <div class="text-filed">
           <div class="input-box">
             <input id="studio-name" type="text" name="studioName" th:value="${studioInfo.studioName}" readonly/>
-            <label for="studio-name" class="label">차모델명</label>
+            <label for="studio-name" class="label">시설명</label>
+          </div>
+        </div>
+        <div class="text-filed">
+          <div class="input-box">
+            <input id="address1" type="text" name="address1" th:value="${studioInfo.address1}" readonly
+            />
+            <label for="address1" class="label">도로명주소</label>
+          </div>
+        </div>
+        <div class="text-filed">
+          <div class="input-box">
+            <input id="address2" type="text" name="address2" th:value="${studioInfo.address2}" readonly
+            />
+            <label for="address2" class="label">도로명주소</label>
           </div>
         </div>
         <div class="text-filed">
@@ -48,7 +62,6 @@
           <div class="input-box">
             <input id="ownerPhone" type="text" name="ownerPhone" th:value="${studioInfo.ownerPhone}" readonly/>
             <label for="ownerPhone" class="label">오너님번호</label>
-            <p class="example">마감시각에 예약할 경우 최대 1시간 예약가능</p>
           </div>
         </div>
         <div class="text-filed" id="two">

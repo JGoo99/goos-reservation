@@ -47,8 +47,6 @@ public class OwnerDetails implements UserDetails {
     return owner.getId();
   }
 
-  public Long getStudioId() { return owner.getStudioId(); }
-
   @Override
   public boolean isAccountNonExpired() {
     return true;

@@ -21,9 +21,6 @@ public class StudioInfoDto {
   private Integer open;
   private Integer close;
 
-  private int stars;
-  private int reviewCount;
-
   private String ownerName;
   private String ownerPhone;
 
@@ -37,8 +34,6 @@ public class StudioInfoDto {
       .oneLineExplain(studio.getOneLineExplain())
       .open(studio.getOpen())
       .close(studio.getClose())
-      .stars(studio.getStars())
-      .reviewCount(studio.getReviewCount())
       .ownerName(owner.getOwnerName())
       .ownerPhone(owner.getPhone())
       .address1(studio.getAddress1())

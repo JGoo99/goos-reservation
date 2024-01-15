@@ -90,18 +90,6 @@
     cursor: pointer;
 }
 
-.selector-wrap:hover {
-    background-color: #3376b9;
-}
-
-#owner-dir-selector .selector-wrap {
-    background-color: #e77070;
-}
-
-#owner-dir-selector .selector-wrap:hover {
-    background-color: #d26565;
-}
-
 #owner-dir-selector #add-button {
     margin-left: auto;
     margin-right: 10px;

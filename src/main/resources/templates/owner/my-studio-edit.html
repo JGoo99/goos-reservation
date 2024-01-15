@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8"/>
+  <meta
+    name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <link rel="stylesheet" href="/add.css"/>
+  <title>Studio Edit</title>
+</head>
+<body>
+<div id="default">
+  <div id="container">
+    <div class="contents">
+      <div class="title" id="owner-title">
+        <a href="/owner/home" id="home">Goo's Reservation</a>
+        <div class="member-wrap">
+          <div class="is-login" sec:authorize="hasRole('OWNER')">
+            <a href="/owner/my" sec:authentication="name"></a>
+            <p>오너님</p>
+            <span> | </span>
+            <a href="/owner/logout">로그아웃</a>
+          </div>
+        </div>
+      </div>
+      <p class="intro">수정하고싶은 부분을 지우고 다시 입력해주세요.</p>
+      <form action="/owner/my/studio/editProc" method="post" class="editForm">
+        <div class="text-filed">
+          <div class="input-box">
+            <input id="studioName" type="text" name="studioName" placeholder="" th:value="${studioInfo.studioName}" required
+            />
+            <label for="studioName" class="label">시설명</label>
+            <p class="example">스터디룸</p>
+          </div>
+        </div>
+        <div class="text-filed">
+          <div class="input-box">
+            <input id="address1" type="text" name="address1" placeholder="" th:value="${studioInfo.address1}" required
+            />
+            <label for="address1" class="label">도로명주소</label>
+            <p class="example">OO로O길 OO</p>
+          </div>
+        </div>
+        <div class="text-filed">
+          <div class="input-box">
+            <input id="address2" type="text" name="address2" placeholder="" th:value="${studioInfo.address2}" required
+            />
+            <label for="address2" class="label">도로명주소</label>
+            <p class="example">2층 201호</p>
+          </div>
+        </div>
+        <div class="text-filed" id="two">
+          <div class="input-box">
+            <input id="open" type="text" name="open" placeholder="" th:value="${studioInfo.open}" required/>
+            <label for="open" class="label">운영오픈시간</label>
+            <p class="example">몇 시부터 예약이 가능한가요? [0 ~ 24]</p>
+          </div>
+          <div class="input-box">
+            <input id="close" type="text" name="close" placeholder="" th:value="${studioInfo.close}" required/>
+            <label for="close" class="label">운영마감시간</label>
+            <p class="example">몇시까지 이용이 가능한가요? [0 ~ 24]</p>
+          </div>
+        </div>
+        <div class="text-filed">
+          <div class="input-box">
+            <textarea id="oneLineExplain" name="oneLineExplain" cols="30" rows="1" placeholder="" th:text="${studioInfo.oneLineExplain}"></textarea>
+            <label for="oneLineExplain" class="label">한줄소개</label>
+            <p class="example">카페같은 분위기의 스터디룸입니다.</p>
+          </div>
+        </div>
+        <input type="hidden" name="ownerId" th:value="${#authentication.principal.id}">
+        <input type="hidden" name="studioId" th:value="${studioInfo.studioId}">
+        <button type="submit" class="submit-button-owner">시설 정보 수정</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

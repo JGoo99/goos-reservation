@@ -1,8 +1,9 @@
 package com.goo99.goosreservation.service.impl;
 
 import com.goo99.goosreservation.data.dto.PagingDto;
-import com.goo99.goosreservation.data.dto.owner.StudioAddDto;
 import com.goo99.goosreservation.data.dto.StudioInfoDto;
+import com.goo99.goosreservation.data.dto.owner.StudioAddDto;
+import com.goo99.goosreservation.data.dto.owner.StudioEditDto;
 import com.goo99.goosreservation.data.entity.Owner;
 import com.goo99.goosreservation.data.entity.Studio;
 import com.goo99.goosreservation.exception.CustomException;
@@ -28,10 +29,7 @@ public class StudioServiceImpl implements StudioService {
   public StudioInfoDto add(StudioAddDto studioAddDto) {
 
     Studio studio = studioRepo.save(StudioAddDto.toEntity(studioAddDto));
-
     Owner owner = findOwnerById(studioAddDto.getOwnerId());
-    owner.setStudioId(studio.getId());
-    ownerRepo.save(owner);
 
     return StudioInfoDto.from(studio, owner);
   }
@@ -41,7 +39,7 @@ public class StudioServiceImpl implements StudioService {
 
     Page<Studio> list = studioRepo.findAllBy(
       PageRequest.of(pagingDto.getPageNum() - 1, pagingDto.getSize(),
-        Sort.by(Sort.Direction.DESC, "reviewCount")));
+        Sort.by(Sort.Direction.DESC, pagingDto.getDirectionColumn())));
 
     return list.map(m -> {
       return StudioInfoDto.from(m, findOwnerById(m.getOwnerId()));
@@ -55,6 +53,30 @@ public class StudioServiceImpl implements StudioService {
     Owner owner = findOwnerById(studio.getOwnerId());
 
     return StudioInfoDto.from(studio, owner);
+  }
+
+  @Override
+  public Page<StudioInfoDto> getListByOwnerId(Long ownerId, PagingDto pagingDto) {
+
+    Page<Studio> studios = studioRepo.findAllByOwnerId(ownerId,
+      PageRequest.of(pagingDto.getPageNum() - 1, pagingDto.getSize(),
+        Sort.Direction.DESC, "createdAt"));
+
+    return studios.map(m -> StudioInfoDto.from(m, findOwnerById(m.getOwnerId())));
+  }
+
+  @Override
+  public void deleteById(Long studioId) {
+    studioRepo.delete(findStudioById(studioId));
+  }
+
+  @Override
+  public StudioInfoDto edit(StudioEditDto studioEditDto) {
+
+    Studio editedStudio = StudioEditDto.toEntity(studioEditDto);
+    Studio studio = studioRepo.save(editedStudio);
+
+    return StudioInfoDto.from(studio, findOwnerById(studio.getOwnerId()));
   }
 
   public Owner findOwnerById(Long ownerId) {

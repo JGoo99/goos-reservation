@@ -25,6 +25,4 @@ public class Owner extends BaseEntity {
   private String phone;
   private String address;
   private String role;
-
-  private Long studioId;
 }

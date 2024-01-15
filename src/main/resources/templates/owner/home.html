@@ -41,16 +41,7 @@
         </form>
       </div>
       <div class="dir-selector" id="owner-dir-selector">
-        <div class="selector-wrap">
-          <p>거리순</p>
-        </div>
-        <div class="selector-wrap">
-          <p>별점순</p>
-        </div>
-        <div class="selector-wrap">
-          <p>가나다순</p>
-        </div>
-        <div class="selector-wrap" id="add-button" th:unless="${isStudioRegistered}">
+        <div class="selector-wrap" id="add-button">
           <a href="/owner/studio/add">시설 등록하러 가기 👉🏻👉🏻</a>
         </div>
       </div>
@@ -60,16 +51,6 @@
           <a th:href="@{/owner/studio/info(studioId=${x.studioId})}" class="studio-ele" th:each="x : ${list}">
             <p class="ele-title" th:text="${x.studioName}"></p>
             <div class="ele-summary">
-              <div class="stars">
-                <div class="icon-star">⭐</div>
-                <div class="stars-value" th:if="${x.reviewCount} == '0'" th:text="0.0"></div>
-                <div class="stars-value" th:unless="${x.reviewCount} == '0'" th:text="${x.stars} / ${x.reviewCount}"></div>
-              </div>
-              <div class="review-count">
-                <p>리뷰</p>
-                <p id="review-count" th:text="${x.reviewCount}"></p>
-                <p>개</p>
-              </div>
               <div class="oneLineExplain">
                 <p th:text="${x.oneLineExplain}"></p>
               </div>

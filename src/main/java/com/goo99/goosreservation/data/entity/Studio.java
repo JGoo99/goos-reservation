@@ -25,9 +25,6 @@ public class Studio extends BaseEntity {
   private String address1;
   private String address2;
 
-  private int stars; // 총 별점
-  private int reviewCount;
-
   private int open;
   private int close;
 }

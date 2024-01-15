@@ -6,5 +6,5 @@ public interface OwnerService {
 
   boolean join(OwnerJoinDto ownerJoinDto);
 
-  boolean isStudioRegistered(Long driverId);
+  void validateOwner(Long studioId, Long ownerId);
 }

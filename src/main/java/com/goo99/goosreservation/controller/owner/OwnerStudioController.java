@@ -39,12 +39,4 @@ public class OwnerStudioController {
     return "owner/studio/info";
   }
 
-  @GetMapping("/edit")
-  public String editP(@RequestParam Long studioId, Model model) {
-
-    StudioInfoDto studioInfo = studioService.getInfo(studioId);
-    model.addAttribute("studioInfo", studioInfo);
-
-    return "owner/studio/edit";
-  }
 }

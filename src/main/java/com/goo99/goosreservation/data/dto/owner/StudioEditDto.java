@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @Builder
 @ToString
-public class StudioAddDto {
+public class StudioEditDto {
 
   @NotNull
   private String StudioName;
@@ -29,19 +29,23 @@ public class StudioAddDto {
   private Long ownerId;
 
   @NotBlank
+  private Long studioId;
+
+  @NotBlank
   private String address1;
 
   private String address2;
 
-  public static Studio toEntity(StudioAddDto studioAddDto) {
+  public static Studio toEntity(StudioEditDto studioEditDto) {
     return Studio.builder()
-      .studioName(studioAddDto.getStudioName())
-      .oneLineExplain(studioAddDto.getOneLineExplain())
-      .open(studioAddDto.getOpen())
-      .close(studioAddDto.getClose())
-      .ownerId(studioAddDto.getOwnerId())
-      .address1(studioAddDto.getAddress1())
-      .address2(studioAddDto.getAddress2())
+      .id(studioEditDto.getStudioId())
+      .studioName(studioEditDto.getStudioName())
+      .oneLineExplain(studioEditDto.getOneLineExplain())
+      .open(studioEditDto.getOpen())
+      .close(studioEditDto.getClose())
+      .ownerId(studioEditDto.getOwnerId())
+      .address1(studioEditDto.getAddress1())
+      .address2(studioEditDto.getAddress2())
       .build();
   }
 }

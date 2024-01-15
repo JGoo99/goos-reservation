@@ -21,7 +21,7 @@ public class PagingDto {
     this.pageNum = 1;
     this.size = 4;
     this.buttonLimit = 3;
-    this.directionColumn = "reviewCount"; // 이용자수가 많은 순서로 정렬
+    this.directionColumn = "studioName";
   }
 
   public void setPagingDto(Pageable pageable, int totalPage) {

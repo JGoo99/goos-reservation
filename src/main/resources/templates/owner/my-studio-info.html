@@ -9,20 +9,20 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/info.css">
-  <title>Studio Info</title>
+  <title>My Studio Info</title>
 </head>
 <body>
 <div id="default">
   <div id="container">
     <div class="contents">
-      <div class="title">
-        <a href="/home" id="home">Goo's Reservation</a>
+      <div class="title" id="owner-title">
+        <a href="/owner/home" id="home">Goo's Reservation</a>
         <div class="member-wrap">
-          <div class="is-login" sec:authorize="hasRole('USER')">
-            <a href="/my" sec:authentication="principal.nickname"></a>
-            <p>고객님</p>
+          <div class="is-login" sec:authorize="hasRole('OWNER')">
+            <a href="/owner/my" sec:authentication="name"></a>
+            <p>오너님</p>
             <span> | </span>
-            <a href="/logout">로그아웃</a>
+            <a href="/owner/logout">로그아웃</a>
           </div>
         </div>
       </div>
@@ -30,14 +30,8 @@
       <div class="info-details">
         <div class="text-filed">
           <div class="input-box">
-            <input id="studioName" type="text" name="studioName" th:value="${studioInfo.studioName}" readonly/>
-            <label for="studioName" class="label">시설명</label>
-          </div>
-        </div>
-        <div class="text-filed">
-          <div class="input-box">
-            <textarea id="oneLineExplain" name="oneLineExplain" cols="10" rows="1" th:text="${studioInfo.oneLineExplain}" readonly></textarea>
-            <label id="explain_label" for="oneLineExplain" class="label">한줄소개</label>
+            <input id="studio-name" type="text" name="studioName" th:value="${studioInfo.studioName}" readonly/>
+            <label for="studio-name" class="label">시설명</label>
           </div>
         </div>
         <div class="text-filed">
@@ -49,7 +43,13 @@
         <div class="text-filed">
           <div class="input-box">
             <input id="address2" type="text" name="address2" th:value="${studioInfo.address2}" readonly/>
-            <label for="address2" class="label">상세주소</label>
+            <label for="address2" class="label">도로명주소</label>
+          </div>
+        </div>
+        <div class="text-filed">
+          <div class="input-box">
+            <textarea id="explain" name="studioExplain" cols="10" rows="1" th:text="${studioInfo.oneLineExplain}" readonly></textarea>
+            <label id="explain_label" for="explain" class="label">한줄소개</label>
           </div>
         </div>
         <div class="text-filed" id="time">
@@ -74,8 +74,12 @@
           </div>
         </div>
         <div class="move">
-          <a th:href="@{/studio/reserv(studioId=${studioInfo.studioId})}">예약가능한 시간 알아보기 👉🏻👉🏻</a>
-          <a href="/home">홈으로</a>
+          <a href="/owner/my">돌아가기</a>
+          <a th:href="@{/owner/my/studio/edit(studioId=${studioInfo.studioId})}">수정하기</a>
+          <form action="/owner/my/studio/delete" method="post">
+            <input type="hidden" name="studioId" th:value="${studioInfo.studioId}">
+            <button type="submit">삭제하기</button>
+          </form>
         </div>
       </div>
     </div>

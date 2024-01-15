@@ -30,10 +30,6 @@ public class UserStudioController {
     return "user/studio/info";
   }
 
-  /**
-   * 매장 예약 : 년도와 달을 고르는 페이지
-   * @return 매장 예약 중 년도와 달을 고르는 페이지
-   */
   @GetMapping("/reserv")
   public String reservP(@RequestParam Long studioId, Model model) {
 
@@ -42,9 +38,6 @@ public class UserStudioController {
     return "user/studio/reservation";
   }
 
-  /**
-   * 매장 예약 : 날짜를 고르는 페이지
-   */
   @PostMapping("/reserv.proc1")
   public String reservProc1P(@ModelAttribute ReservationAddDto addDto, Model model) {
     int lastDays =
@@ -57,10 +50,6 @@ public class UserStudioController {
     return "user/studio/reservation-day";
   }
 
-  /**
-   * 매장 예약 : 시각을 고르는 페이지
-   * @return 예약가능한 시간만 선택할 수 있도록 한다.
-   */
   @PostMapping("/reserv.proc2")
   public String reservProc2P(@ModelAttribute ReservationAddDto addDto, Model model) {
 
@@ -79,12 +68,6 @@ public class UserStudioController {
     return "user/studio/reservation-time";
   }
 
-  /**
-   * 매장 예약 : 모든 정보를 받아서 예약 db 에 저장.
-   * @param addDto .
-   * @param model .
-   * @return 저장 시 예약정보를 확인할 수 있는 페이지
-   */
   @PostMapping("/reserv.proc3")
   public String reservProc3P(@ModelAttribute ReservationAddDto addDto, Model model) {
 

@@ -58,11 +58,11 @@ body {
     margin-right: 10px;
 }
 
-.date, .owner {
+.date, .owner, .location {
     display: flex;
 }
 
-.date > div, .owner > div {
+.date > div, .owner > div, .location > div {
     margin-right: 3px;
 }
 .date .time {

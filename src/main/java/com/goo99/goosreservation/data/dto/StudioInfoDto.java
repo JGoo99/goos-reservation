@@ -27,6 +27,9 @@ public class StudioInfoDto {
   private String ownerName;
   private String ownerPhone;
 
+  private String address1;
+  private String address2;
+
   public static StudioInfoDto from(Studio studio, Owner owner) {
     return StudioInfoDto.builder()
       .studioId(studio.getId())
@@ -38,6 +41,8 @@ public class StudioInfoDto {
       .reviewCount(studio.getReviewCount())
       .ownerName(owner.getOwnerName())
       .ownerPhone(owner.getPhone())
+      .address1(studio.getAddress1())
+      .address2(studio.getAddress2())
       .build();
   }
 }

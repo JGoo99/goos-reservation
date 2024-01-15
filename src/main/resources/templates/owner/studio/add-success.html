@@ -36,7 +36,21 @@
             <label for="studioName" class="label">시설명</label>
           </div>
         </div>
-        <div class="text-filed" id="time">
+        <div class="text-filed">
+          <div class="input-box">
+            <input id="address1" type="text" name="address1" th:value="${studioInfo.address1}" readonly
+            />
+            <label for="address1" class="label">도로명주소</label>
+          </div>
+        </div>
+        <div class="text-filed">
+          <div class="input-box">
+            <input id="address2" type="text" name="address2" th:value="${studioInfo.address2}" readonly
+            />
+            <label for="address2" class="label">도로명주소</label>
+          </div>
+        </div>
+        <div class="text-filed" id="two">
           <div class="input-box">
             <input id="open" type="text" name="open" th:value="${studioInfo.open}" readonly/>
             <label for="open" class="label">운영오픈시간</label>

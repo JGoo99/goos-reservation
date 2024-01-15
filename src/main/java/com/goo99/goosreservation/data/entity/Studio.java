@@ -17,11 +17,13 @@ public class Studio extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(unique = true)
   private Long ownerId;
 
   private String studioName;
   private String oneLineExplain;
+
+  private String address1;
+  private String address2;
 
   private int stars; // 총 별점
   private int reviewCount;

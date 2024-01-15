@@ -79,6 +79,8 @@ public class ReservationInfoDto {
       .isAccepted(isAccepted)
       .ownerName(owner.getOwnerName())
       .ownerPhone(owner.getPhone())
+      .address1(studio.getAddress1())
+      .address2(studio.getAddress2())
       .build();
   }
 

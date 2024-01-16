@@ -104,4 +104,4 @@
 
 ## ERD
 
-<img src="https://github.com/JGoo99/goos-reservation/assets/126454114/885b15f4-7866-4b16-b9bb-99c7bb0b4b93" width="60%">
+<img src="https://github.com/JGoo99/goos-reservation/assets/126454114/885b15f4-7866-4b16-b9bb-99c7bb0b4b93" width="100%">

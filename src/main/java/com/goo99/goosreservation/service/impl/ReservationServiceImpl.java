@@ -1,5 +1,6 @@
 package com.goo99.goosreservation.service.impl;
 
+import com.goo99.goosreservation.data.dto.PagingDto;
 import com.goo99.goosreservation.data.dto.ReservationInfoDto;
 import com.goo99.goosreservation.data.dto.user.DateMapping;
 import com.goo99.goosreservation.data.dto.user.ReservationAddDto;
@@ -12,6 +13,9 @@ import com.goo99.goosreservation.repository.ReservationRepo;
 import com.goo99.goosreservation.repository.StudioRepo;
 import com.goo99.goosreservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,8 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import static com.goo99.goosreservation.type.ErrorCode.OWNER_NOTFOUND;
-import static com.goo99.goosreservation.type.ErrorCode.STUDIO_NOTFOUND;
+import static com.goo99.goosreservation.type.ErrorCode.*;
 
 @Service
 @RequiredArgsConstructor
@@ -102,11 +105,30 @@ public class ReservationServiceImpl implements ReservationService {
       }
     }
 
-    Reservation reservation =
-      reservationRepo.save(ReservationAddDto.toEntity(addDto));
     Owner owner = findOwnerById(studio.getOwnerId());
+    Reservation reservation =
+      reservationRepo.save(ReservationAddDto.toEntity(addDto, owner.getId()));
 
     return ReservationInfoDto.from(reservation, studio, owner);
+  }
+
+  @Override
+  public Page<ReservationInfoDto> getAcceptedList(Long ownerId, PagingDto pagingDto) {
+
+    Page<Reservation> reservations = reservationRepo.findAllByOwnerIdAndIsAccepted(ownerId, 1,
+      PageRequest.of(pagingDto.getPageNum() - 1, pagingDto.getSize(),
+        Sort.Direction.DESC, "reservedAt"));
+
+    return reservations.map(m ->
+      ReservationInfoDto.from(m, findStudioById(m.getStudioId()), findOwnerById(m.getOwnerId())));
+  }
+
+  @Override
+  public void reject(Long ownerId, Long reservationId) {
+
+    Reservation reservation = findReservationByOwner(reservationId, ownerId);
+    reservation.setIsAccepted(-1);
+    reservationRepo.save(reservation);
   }
 
   public Studio findStudioById(Long studioId) {
@@ -117,5 +139,10 @@ public class ReservationServiceImpl implements ReservationService {
   public Owner findOwnerById(Long ownerId) {
     return ownerRepo.findById(ownerId)
       .orElseThrow(() -> new CustomException(OWNER_NOTFOUND));
+  }
+
+  public Reservation findReservationByOwner(Long reservationId, Long ownerId) {
+    return reservationRepo.findByIdAndOwnerId(reservationId, ownerId)
+      .orElseThrow(() -> new CustomException(RESERVATION_NOTFOUND));
   }
 }

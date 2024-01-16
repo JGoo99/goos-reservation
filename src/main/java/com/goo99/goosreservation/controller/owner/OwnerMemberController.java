@@ -4,7 +4,6 @@ import com.goo99.goosreservation.data.dto.PagingDto;
 import com.goo99.goosreservation.data.dto.StudioInfoDto;
 import com.goo99.goosreservation.data.dto.owner.OwnerDetails;
 import com.goo99.goosreservation.data.dto.owner.OwnerJoinDto;
-import com.goo99.goosreservation.data.dto.owner.StudioEditDto;
 import com.goo99.goosreservation.service.impl.OwnerServiceImpl;
 import com.goo99.goosreservation.service.impl.StudioServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -56,8 +55,7 @@ public class OwnerMemberController {
   @GetMapping("/home")
   public String homeP(@RequestParam(defaultValue = "1") int page,
                       @ModelAttribute PagingDto pagingDto,
-                      @PageableDefault(page = 1) Pageable pageable, Model model,
-                      @AuthenticationPrincipal OwnerDetails details) {
+                      @PageableDefault(page = 1) Pageable pageable, Model model) {
 
     pagingDto.setPageNum(page);
     Page<StudioInfoDto> list = studioService.getList(pagingDto);
@@ -68,65 +66,5 @@ public class OwnerMemberController {
     model.addAttribute("endPage", pagingDto.getEndPage());
 
     return "owner/home";
-  }
-
-  @GetMapping("/my")
-  public String myP(@RequestParam(defaultValue = "1") int page,
-                    @ModelAttribute PagingDto pagingDto,
-                    @PageableDefault(page = 1) Pageable pageable, Model model,
-                    @AuthenticationPrincipal OwnerDetails details) {
-
-    pagingDto.setPageNum(page);
-    Page<StudioInfoDto> list = studioService.getListByOwnerId(details.getId(), pagingDto);
-    pagingDto.setPagingDto(pageable, list.getTotalPages());
-
-    model.addAttribute("list", list);
-    model.addAttribute("startPage", pagingDto.getStartPage());
-    model.addAttribute("endPage", pagingDto.getEndPage());
-
-    return "owner/my";
-  }
-
-  @GetMapping("/my/studio")
-  public String myStudioP(@RequestParam Long studioId, Model model,
-                          @AuthenticationPrincipal OwnerDetails details) {
-
-    ownerService.validateOwner(studioId, details.getId());
-
-    StudioInfoDto studioInfo = studioService.getInfo(studioId);
-    model.addAttribute("studioInfo", studioInfo);
-
-    return "owner/my-studio-info";
-  }
-
-  @GetMapping("/my/studio/edit")
-  public String myStudioEditP(@RequestParam Long studioId, Model model,
-                          @AuthenticationPrincipal OwnerDetails details) {
-
-    ownerService.validateOwner(studioId, details.getId());
-
-    StudioInfoDto studioInfo = studioService.getInfo(studioId);
-    model.addAttribute("studioInfo", studioInfo);
-
-    return "owner/my-studio-edit";
-  }
-
-  @PostMapping("/my/studio/editProc")
-  public String myStudioEditProcP(@ModelAttribute StudioEditDto studioEditDto, Model model) {
-
-    StudioInfoDto studioInfoDto = studioService.edit(studioEditDto);
-    model.addAttribute("studioInfo", studioInfoDto);
-
-    return "owner/my-studio-edit-success";
-  }
-
-  @PostMapping("/my/studio/delete")
-  public String myStudioDeleteP(Long studioId,
-                                @AuthenticationPrincipal OwnerDetails details) {
-
-    ownerService.validateOwner(studioId, details.getId());
-    studioService.deleteById(studioId);
-
-    return "redirect:/owner/my";
   }
 }

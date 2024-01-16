@@ -18,7 +18,10 @@ public enum ErrorCode {
   DUPLICATE_OWNER_EMAIL("이미 회원가입된 기사 이메일입니다."),
 
   // 시설
-  STUDIO_NOTFOUND("해당 택시데이터를 찾을 수 없습니다. ");
+  STUDIO_NOTFOUND("해당 택시데이터를 찾을 수 없습니다. "),
+
+  // 예약
+  RESERVATION_NOTFOUND("해당 예약데이터를 찾을 수 없습니다.");
 
   private final String description;
 }

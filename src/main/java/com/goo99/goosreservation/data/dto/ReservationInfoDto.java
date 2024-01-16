@@ -43,9 +43,6 @@ public class ReservationInfoDto {
   public static ReservationInfoDto from(Reservation reservation, Studio studio, Owner owner) {
     String isAccepted = "";
     switch (reservation.getIsAccepted()) {
-      case 0:
-        isAccepted = "예약 대기";
-        break;
       case -1:
         isAccepted = "예약 거부";
         break;

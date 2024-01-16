@@ -28,14 +28,14 @@ public class ReservationAddDto {
 
   private List<Integer> times;
 
-  public static Reservation toEntity(ReservationAddDto reservationAddDto) {
+  public static Reservation toEntity(ReservationAddDto reservationAddDto, Long ownerId) {
     List<Integer> times = reservationAddDto.getTimes();
     int from = times.get(0);
     int time = times.size();
 
     return Reservation.builder()
       .isVisited(false)
-      .isAccepted(0)
+      .isAccepted(1)
       .reservedAt(LocalDateTime.of(
         reservationAddDto.getYear(),
         reservationAddDto.getMonth(),
@@ -46,6 +46,7 @@ public class ReservationAddDto {
       .userName(reservationAddDto.userName)
       .userPhone(reservationAddDto.userPhone)
       .userId(reservationAddDto.getUserId())
+      .ownerId(ownerId)
       .build();
   }
 }

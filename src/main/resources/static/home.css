@@ -256,3 +256,33 @@ li {
 .reserv-list a {
     color: black;
 }
+
+table {
+    width: 700px;
+    cursor: default;
+    border-radius: 16px;
+}
+
+tr,
+td, th {
+    text-align: center;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+tr:not(:first-child):hover {
+    background-color: #f8c0c0;
+}
+
+.move button {
+    background-color: #d96161;
+    color: white;
+    padding: 5px;
+    font-size: 13pt;
+    border: none;
+    border-radius: 30px;
+}
+
+.move button:hover {
+    background-color: darkred;
+}

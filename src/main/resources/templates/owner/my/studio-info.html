@@ -76,6 +76,7 @@
         <div class="move">
           <a href="/owner/my">돌아가기</a>
           <a th:href="@{/owner/my/studio/edit(studioId=${studioInfo.studioId})}">수정하기</a>
+          <a th:href="@{/owner/my/studio/reserv(studioId=${studioInfo.studioId})}">예약확인하기</a>
           <form action="/owner/my/studio/delete" method="post">
             <input type="hidden" name="studioId" th:value="${studioInfo.studioId}">
             <button type="submit">삭제하기</button>

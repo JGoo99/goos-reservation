@@ -19,7 +19,7 @@ public class Reservation extends BaseEntity {
   private Long id;
 
   private boolean isVisited;
-  private int isAccepted; // | -1 거절 | 0 대기 | 1 승인 |
+  private int isAccepted; // | -1 거절 | 1 승인 |
 
   private LocalDateTime reservedAt; // 예약시간 (이용시간은 1시간 단위로 고정)
   private int time; // 이용 시간
@@ -29,4 +29,5 @@ public class Reservation extends BaseEntity {
 
   private Long userId;
   private Long studioId;
+  private Long ownerId;
 }

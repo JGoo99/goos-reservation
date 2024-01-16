@@ -274,6 +274,10 @@ tr:not(:first-child):hover {
     background-color: #f8c0c0;
 }
 
+#user-table tr:not(:first-child):hover {
+    background-color: #7fbbfa;
+}
+
 .move button {
     background-color: #d96161;
     color: white;

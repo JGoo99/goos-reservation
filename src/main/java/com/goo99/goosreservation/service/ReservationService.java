@@ -17,4 +17,6 @@ public interface ReservationService {
   Page<ReservationInfoDto> getAcceptedList(Long ownerId, PagingDto pagingDto);
 
   void reject(Long ownerId, Long reservationId);
+
+  Page<ReservationInfoDto> getListByUserId(Long userId, PagingDto pagingDto);
 }

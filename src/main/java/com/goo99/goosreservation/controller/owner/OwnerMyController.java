@@ -94,6 +94,7 @@ public class OwnerMyController {
 
     pagingDto.setPageNum(page);
     pagingDto.setSize(7);
+    pagingDto.setDirectionColumn("reservedAt");
     Page<ReservationInfoDto> list = reservationService.getAcceptedList(details.getId(), pagingDto);
     pagingDto.setPagingDto(pageable, list.getTotalPages());
 

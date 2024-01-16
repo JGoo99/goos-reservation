@@ -1,8 +1,11 @@
 package com.goo99.goosreservation.controller.user;
 
 import com.goo99.goosreservation.data.dto.PagingDto;
+import com.goo99.goosreservation.data.dto.ReservationInfoDto;
 import com.goo99.goosreservation.data.dto.StudioInfoDto;
+import com.goo99.goosreservation.data.dto.user.UserCustomDetails;
 import com.goo99.goosreservation.data.dto.user.UserJoinDto;
+import com.goo99.goosreservation.service.impl.ReservationServiceImpl;
 import com.goo99.goosreservation.service.impl.StudioServiceImpl;
 import com.goo99.goosreservation.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
@@ -12,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +33,8 @@ public class UserMemberController {
 
   private final UserServiceImpl userService;
   private final StudioServiceImpl studioService;
+  private final ReservationServiceImpl reservationService;
+
   private final Logger LOGGER = LoggerFactory.getLogger(UserMemberController.class);
 
   @GetMapping("/join")
@@ -80,5 +86,24 @@ public class UserMemberController {
     model.addAttribute("endPage", pagingDto.getEndPage());
 
     return "user/home";
+  }
+
+  @GetMapping("/my")
+  public String myP(@RequestParam(defaultValue = "1") int page,
+                    @ModelAttribute PagingDto pagingDto,
+                    @PageableDefault(page = 1) Pageable pageable, Model model,
+                    @AuthenticationPrincipal UserCustomDetails details) {
+
+    pagingDto.setPageNum(page);
+    pagingDto.setSize(7);
+    pagingDto.setDirectionColumn("reservedAt");
+    Page<ReservationInfoDto> list = reservationService.getListByUserId(details.getId(), pagingDto);
+    pagingDto.setPagingDto(pageable, list.getTotalPages());
+
+    model.addAttribute("list", list);
+    model.addAttribute("startPage", pagingDto.getStartPage());
+    model.addAttribute("endPage", pagingDto.getEndPage());
+
+    return "user/my/my";
   }
 }

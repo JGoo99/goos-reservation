@@ -44,10 +44,10 @@ public class ReservationInfoDto {
     String isAccepted = "";
     switch (reservation.getIsAccepted()) {
       case -1:
-        isAccepted = "예약 거부";
+        isAccepted = "거부";
         break;
       case 1:
-        isAccepted = "예약 승인";
+        isAccepted = "승인";
         break;
       default:
         isAccepted = "ERROR(예약 오류)";

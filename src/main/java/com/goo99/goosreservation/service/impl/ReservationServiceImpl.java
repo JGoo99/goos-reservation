@@ -117,7 +117,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     Page<Reservation> reservations = reservationRepo.findAllByOwnerIdAndIsAccepted(ownerId, 1,
       PageRequest.of(pagingDto.getPageNum() - 1, pagingDto.getSize(),
-        Sort.Direction.DESC, "reservedAt"));
+        Sort.Direction.DESC, pagingDto.getDirectionColumn()));
 
     return reservations.map(m ->
       ReservationInfoDto.from(m, findStudioById(m.getStudioId()), findOwnerById(m.getOwnerId())));
@@ -129,6 +129,17 @@ public class ReservationServiceImpl implements ReservationService {
     Reservation reservation = findReservationByOwner(reservationId, ownerId);
     reservation.setIsAccepted(-1);
     reservationRepo.save(reservation);
+  }
+
+  @Override
+  public Page<ReservationInfoDto> getListByUserId(Long userId, PagingDto pagingDto) {
+
+    Page<Reservation> reservations = reservationRepo.findAllByUserId(userId,
+      PageRequest.of(pagingDto.getPageNum() - 1, pagingDto.getSize(),
+        Sort.Direction.ASC, pagingDto.getDirectionColumn()));
+
+    return reservations.map(m ->
+      ReservationInfoDto.from(m, findStudioById(m.getStudioId()), findOwnerById(m.getOwnerId())));
   }
 
   public Studio findStudioById(Long studioId) {

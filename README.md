@@ -2,7 +2,7 @@
 
 오너가 등록한 시설을 유저가 예약하는 서비스입니다.
 
-[플레이 시연 영상 보러가기👉🏻👉🏻](https://youtu.be/pLfiAwebams?si=JCW6iWWsxNgLg3gX)
+[플레이 시연 영상 보러가기👉🏻👉🏻](https://www.youtube.com/watch?v=k7K2vS35NA0)
 
 <br/><br/>
 
